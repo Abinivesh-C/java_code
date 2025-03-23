@@ -1,0 +1,47 @@
+import java.util.*;
+public class Main{
+     public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        sc.nextLine();
+        String s1=sc.nextLine();
+        String s2=sc.nextLine();
+        if(same(s1,s2)){
+            System.out.print(swap(s1.toCharArray(),s2.toCharArray(),n));
+        } 
+        else{
+            System.out.print(-1);
+        }
+    }
+    public static boolean same(String s1, String s2){
+        char[] arr1=s1.toCharArray();
+        char[] arr2=s2.toCharArray();
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        return Arrays.equals(arr1,arr2);
+    }
+    public static int swap(char[] s1, char[] s2, int n){
+        int i=0;
+        int j=0;
+        int res=0;
+        while(i<n){
+            j=i;
+            while(s1[j]!=s2[i]){
+                j+=1;
+            }
+            while(i<j){
+                char temp=s1[j];
+                s1[j]=s1[j-1];
+                s1[j-1]=temp;
+                j-=1;
+                res+=1;
+            }
+            i+=1;
+        }
+        return res;
+    }
+}
+//Input:4
+//abcd
+//dcba
+//Output:6
